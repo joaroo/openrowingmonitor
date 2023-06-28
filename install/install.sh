@@ -51,27 +51,29 @@ ask() {
 CURRENT_DIR=$(pwd)
 INSTALL_DIR="/opt/openrowingmonitor"
 GIT_REMOTE="https://github.com/laberning/openrowingmonitor.git"
-
-print "This script will set up Open Rowing Monitor on one of the following devices"
-print "  Raspberry Pi Zero W or WH"
-print "  Raspberry Pi Zero 2 W or WH"
-print "  Raspberry Pi 3 Model A+, B or B+"
-print "  Raspberry Pi 4 Model B"
-print
-print "You should only run this script on a SD Card that contains Raspberry Pi OS (Lite)"
-print "and does not contain any important data."
-
-if [[ -f "/proc/device-tree/model" ]]; then
-  MODEL=$(tr -d '\0' < /proc/device-tree/model)
-else
-  MODEL="undefined"
-fi
-
-if [[ $MODEL != Raspberry* ]]; then
-  print
-  cancel "This script currently only works on Raspberry Pi OS, you will have to do a manual installation."
-fi
-
+# 
+#  Removed for running on non Raspberry Pi SBC
+# 
+# print "This script will set up Open Rowing Monitor on one of the following devices"
+# print "  Raspberry Pi Zero W or WH"
+# print "  Raspberry Pi Zero 2 W or WH"
+# print "  Raspberry Pi 3 Model A+, B or B+"
+# print "  Raspberry Pi 4 Model B"
+# print
+# print "You should only run this script on a SD Card that contains Raspberry Pi OS (Lite)"
+# print "and does not contain any important data."
+# 
+# if [[ -f "/proc/device-tree/model" ]]; then
+#   MODEL=$(tr -d '\0' < /proc/device-tree/model)
+# else
+#   MODEL="undefined"
+# fi
+# 
+# if [[ $MODEL != Raspberry* ]]; then
+#   print
+#   cancel "This script currently only works on Raspberry Pi OS, you will have to do a manual installation."
+# fi
+#
 VERSION=$(grep -oP '(?<=^VERSION=).+' /etc/os-release | tr -d '"')
 if [[ $VERSION != "10 (buster)" ]] && [[ $VERSION != "11 (bullseye)" ]]; then
   print
